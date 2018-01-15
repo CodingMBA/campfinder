@@ -17,9 +17,10 @@ var commentRoutes       = require("./routes/comments"),
     indexRoutes          = require("./routes/index");
 
 mongoose.Promise = global.Promise;
+
 //mongoose.connect("mongodb://localhost/campground_app", {useMongoClient: true});
-mongoose.connect("mongodb://andy:colgate1@ds157097.mlab.com:57097/campground_app", {useMongoClient: true});
-//mongodb://andy:colgate1@ds157097.mlab.com:57097/campground_app
+// mongoose.connect("mongodb://andy:colgate1@ds157097.mlab.com:57097/campground_app", {useMongoClient: true});
+mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
