@@ -20,7 +20,7 @@ mongoose.Promise = global.Promise;
 
 //mongoose.connect("mongodb://localhost/campground_app", {useMongoClient: true});
 // mongoose.connect("mongodb://andy:colgate1@ds157097.mlab.com:57097/campground_app", {useMongoClient: true});
-mongoose.connect(process.env.DATABASEURL);
+mongoose.connect(process.env.DATABASEURL, {useMongoClient: true});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
@@ -28,6 +28,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 // seedDB(); //seed the database
+app.locals.moment = require('moment');
 
 //PASSPORT CONFIGURATION
 app.use(require("express-session")({
@@ -56,5 +57,5 @@ app.use("/campgrounds", campgroundRoutes);
 //SERVER SETUP
 //======================
 app.listen(process.env.PORT, process.env.IP, function(){
-   console.log("The Campground App Server Has Started!");
+   console.log("The CampFinder Server Has Started!");
 });

@@ -11,8 +11,11 @@ router.get("/", function(req, res){
 
 //NEW - Show sign up form
 router.get("/register", function(req, res){
-    res.render("register");
+   res.render("register", {page: 'register'}); 
 });
+// router.get("/register", function(req, res){
+//     res.render("register");
+// });
 
 //CREATE - Sign up new user
 router.post("/register", function(req, res){
@@ -32,8 +35,11 @@ router.post("/register", function(req, res){
 
 //NEW - Show log in form
 router.get("/login", function(req, res){
-    res.render("login");
+   res.render("login", {page: 'login'}); 
 });
+// router.get("/login", function(req, res){
+//     res.render("login");
+// });
 
 //CREATE - Handle log in logic
 router.post("/login", passport.authenticate("local",
