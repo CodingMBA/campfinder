@@ -84,10 +84,12 @@ router.put("/:id",middleware.checkCampgroundOwnership, function(req, res){
     // find and update the correct campground
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
        if(err){
-           res.redirect("/campgrounds");
+           req.flash("error", err.message);
+           res.redirect("back");
        } else {
            //redirect somewhere(show page)
-           res.redirect("/campgrounds/" + req.params.id);
+           req.flash("success","Successfully Updated!");
+           res.redirect("/campgrounds/" + campground._id);
        }
     });
 });
